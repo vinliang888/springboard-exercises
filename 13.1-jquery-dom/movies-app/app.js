@@ -46,7 +46,7 @@ function sortOn(element){
     sortRows(1,element);
   }
 }
-
+//array sort
 function sortRows(child,element) {
   let movieList = [];
   if(element.classList.contains("ascending")) {
