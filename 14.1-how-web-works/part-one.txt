@@ -1,0 +1,8 @@
+HTTP is Hypertext Transfer Protocol and is the protocol for displaying web pages.
+URL is the destination string that is used to make a request to a web server.
+DNS is the Domain Name Service and translates the hostname into an IP address that the browser can make requests to.
+A query string is a string with key-value pair arguments that can be used as arguments of the request to the web server. 
+HTTP GET is used to retrieve data from the server without changing any data on the server. GET arguments are usually part of the request URL or query string. HTTP POST is used to set/change data on the server. POST arguments are usually part of the body of the request.
+HTTP request is a how you send a message to an external server. It includes the method, the protocol, the URL for the request, and headers.
+HTTP response is the response back from a web server after a request.
+
