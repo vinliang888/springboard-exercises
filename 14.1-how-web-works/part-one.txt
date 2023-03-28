@@ -5,4 +5,13 @@ A query string is a string with key-value pair arguments that can be used as arg
 HTTP GET is used to retrieve data from the server without changing any data on the server. GET arguments are usually part of the request URL or query string. HTTP POST is used to set/change data on the server. POST arguments are usually part of the body of the request.
 HTTP request is a how you send a message to an external server. It includes the method, the protocol, the URL for the request, and headers.
 HTTP response is the response back from a web server after a request.
+The HTTP Header can specify the format that you want the response in. The Header in a response may include metadata about the response being sent back from the server. Request headers: Accept-Language, Accept. Response headers: content-type, Date
+The browser sends a request to the server  to get the html, css, js content from that website. The server pulls data from its database and sends a response back to the browser with the relevant html/css/js and compiles it to visualize the body in the format the web designer intended.
 
+
+
+1. Your browser “resolves” the name into an IP address using DNS
+2. Your browser makes a request to that IP address, including headers (info about browser, any previous cookies, and other things)
+3. The server sends a response (typically, HTML, with a status code (200 if it was sucessful)
+4. The browser makes a DOM from that HTML, and finds any other resources needed (images, CSS, JavaScript, etc)
+5. The browser makes separate HTTP requests for those resources and receives response from the server for each
