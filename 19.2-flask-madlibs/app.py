@@ -4,6 +4,10 @@ from stories import Story
 
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = "oh-so-secret"
+
+debug = DebugToolbarExtension(app)
+
 STORY = Story(
     ["place", "noun", "verb", "adjective", "plural_noun"],
     """Once upon a time in a long-ago {place}, there lived a
