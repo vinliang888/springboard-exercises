@@ -3,5 +3,11 @@
 
 {% block content %}
 <h1>Thank you for participating in the survey!</h1>
+<h2>Here are your answers:</h2>
+<ul>
+    {% for response in session['responses'] %}
+    <li><b>{{response['question']}}</b> {{response['answer']}}</li>
+    {% endfor %}
+</ul>
 <a href="/">Start Over!</a>
 {% endblock %}
