@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}BOGGLE!{% endblock %}
+
+{% block content %}
+<table>
+    <tbody>
+        {% for row in session['board'] %}
+            <tr>
+                {% for letter in row %}
+                <td>{{letter}}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Time Left: <span id="timer-sec"></span><span> seconds</span></h2>
+<form action="/check-word" method="POST" id="word-find-form">
+    <label for="word-input">Find a word!</label>
+    <input type="text" name="word-input" id="word-input">
+    <button type="submit" id="submit-btn">Submit</button>
+</form>
+
+{% endblock %}
