@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+</head>
+<body>
+    <h1>Users</h1>
+    {% for category,msg in get_flashed_messages(with_categories=true) %}
+        <p class={{category}}>{{msg}}</p>
+    {% endfor %}
+    <ol>
+        {% for user in users %}
+        <li><a href="/users/{{user.id}}">{{user.get_full_name()}}</a></li>
+        {% endfor %}
+    </ol>
+
+    <a href="/users/new">Add user</a>
+</body>
+</html>

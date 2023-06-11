@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+</head>
+<body>
+    {% if user.image_url == '' %}
+    <img src="https://corn.org/wp-content/uploads/2018/04/CRA-Generic-Headshot.jpg" alt="No image">
+    {% else %}
+    <img src="{{user.image_url}}" alt="Image of {{user.get_full_name()}}">
+    {% endif %}
+    <h1>{{user.get_full_name()}}</h1>
+    <a href="/users/{{user.id}}/edit">Edit</a>
+    <form action="/users/{{user.id}}/delete" method="post">
+        <input type="submit" value="Delete">
+    </form>
+    <a href="/">All Users</a>
+</body>
+</html>
