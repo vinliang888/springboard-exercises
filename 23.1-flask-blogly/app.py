@@ -2,15 +2,24 @@
 
 from flask import Flask, request, render_template, jsonify, redirect, flash, session
 from models import db, connect_db, User
+import os
+import sys 
+
+def get_database_uri():
+    if "python3 -m unittest" in sys.argv:
+        return 'postgresql:///blogly-test'
+    return 'postgresql:///blogly'
 
 app = Flask(__name__)
 app.app_context().push()
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = get_database_uri()
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = "oh-so-secret"
 
 connect_db(app)
+
 
 @app.route('/')
 def open_root():
