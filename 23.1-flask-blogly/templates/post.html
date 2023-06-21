@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{post.title}}</title>
+</head>
+<body>
+    {% for category,msg in get_flashed_messages(with_categories=true) %}
+    <p class={{category}}>{{msg}}</p>
+    {% endfor %}
+    <h1>{{post.title}}</h1>
+    <p>{{post.content}}</p>
+    <span>
+    Created on {{post.display_created_at()}}
+    {% if post.updated_at != None %}
+    Last edited on {{post.display_updated_at()}}
+    {% endif %} by <a href="/users/{{post.user.id}}">{{post.user.get_full_name()}}</a></span>
+    <a href="/posts/{{post.id}}/edit">Edit</a>
+    <form action="/posts/{{post.id}}/delete" method="post">
+        <input type="submit" value="Delete Post">
+    </form>
+</body>
+</html>

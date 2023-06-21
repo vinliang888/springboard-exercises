@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+</head>
+<body>
+    <h1>Edit Post</h1>
+    <form action="/posts/{{post.id}}/edit" method="post">
+        <label for="Title">Title</label>
+        <input type="text" name="title" id="title" value = "{{post.title}}" required>
+        <label for="content">Content</label>
+        <textarea rows="5" cols="60" name="content"   required>{{post.content}}</textarea>
+
+        <span>Created on {{post.display_created_at()}}. 
+        {% if post.updated_at != None %}
+        Last edited on {{post.display_updated_at()}}.
+        {% endif %}
+        </span>
+        <a href="/posts/{{post.id}}">Cancel</a>
+        <input type="submit" value="Edit">
+    </form>
+</body>
+</html>

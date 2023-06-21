@@ -1,7 +1,7 @@
 """Blogly application."""
 
 from flask import Flask, request, render_template, jsonify, redirect, flash, session
-from models import db, connect_db, User
+from models import db, connect_db, User, Post
 import os
 import sys 
 
@@ -69,3 +69,44 @@ def edit_user(user_id):
     User.edit_user(user_id, first_name, last_name, image_url)
     flash(f"User {first_name} {last_name} edited.", 'success')
     return redirect('/users')
+
+@app.route('/posts/<post_id>')
+def display_post(post_id):
+    post = Post.get_post_by_id(post_id)
+    return render_template('post.html', post = post)
+
+@app.route('/users/<user_id>/posts/new')
+def display_add_post_page(user_id):
+    user = User.get_user_by_id(user_id)
+    return render_template('add-post.html', user = user)
+
+@app.route('/users/<user_id>/posts/new', methods = ['POST'])
+def add_post(user_id):
+    user = User.get_user_by_id(user_id)
+    title = request.form.get("title")
+    content = request.form.get("content")
+    Post.add_post(title, content, user.id)
+    flash(f"Post {title} added.", 'success')
+    return redirect(f'/users/{user_id}')
+
+@app.route('/posts/<post_id>/edit')
+def display_edit_post_page(post_id):
+    post = Post.get_post_by_id(post_id)
+    return render_template('edit-post.html', post = post)
+
+@app.route('/posts/<post_id>/edit', methods=['POST'])
+def edit_post(post_id):
+    title = request.form.get("title")
+    content = request.form.get("content")
+    Post.edit_post(post_id, title, content)
+    flash(f"Post {title} edited.", 'success')
+    return redirect(f'/posts/{post_id}')
+
+@app.route('/posts/<post_id>/delete', methods = ['POST'])
+def delete_post(post_id):
+    post = Post.get_post_by_id(post_id)
+    title = post.title
+    user = post.user
+    Post.delete_post_by_id(post_id)
+    flash(f"Post {title} deleted.", 'success')
+    return redirect(f'/users/{user.id}')

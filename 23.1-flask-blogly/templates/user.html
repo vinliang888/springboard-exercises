@@ -7,6 +7,9 @@
     <title>User</title>
 </head>
 <body>
+    {% for category,msg in get_flashed_messages(with_categories=true) %}
+    <p class={{category}}>{{msg}}</p>
+    {% endfor %}
     {% if user.image_url == '' %}
     <img src="https://corn.org/wp-content/uploads/2018/04/CRA-Generic-Headshot.jpg" alt="No image">
     {% else %}
@@ -17,6 +20,23 @@
     <form action="/users/{{user.id}}/delete" method="post">
         <input type="submit" value="Delete">
     </form>
+    <h2>Posts</h2>
+    {% if user.posts|length == 0 %}
+    <p>No posts yet!</p>
+    {% else %}
+    <ul>
+        {% for post in user.posts %}
+        <li><a href="/posts/{{post.id}}">{{post.title}}</a> 
+            <span>Created on {{post.display_created_at()}}. 
+                {% if post.updated_at != None %}
+                Last edited on {{post.display_updated_at()}}.
+                {% endif %}
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a href="/users/{{user.id}}/posts/new">Add Post</a>
     <a href="/">All Users</a>
 </body>
 </html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post for {{user.get_full_name()}}</title>
+</head>
+<body>
+    <h1>Add Post for {{user.get_full_name()}}</h1>
+    <form action="/users/{{user.id}}/posts/new" method="post">
+        <label for="Title">Title</label>
+        <input type="text" name="title" id="title" placeholder = "Enter a title." required>
+        <label for="content">Content</label>
+        <textarea rows="5" cols="60" name="content" placeholder="Enter some content." required></textarea>
+        <a href="/users/{{user.id}}">Cancel</a>
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>
